@@ -144,7 +144,7 @@ app.get('/authorize', function(req, res) {
 
 
 app.get('/ping', function(req, res){
-  res.render('successful', '2000');
+  res.json({ some: "object literal" });
 });
 
 /*

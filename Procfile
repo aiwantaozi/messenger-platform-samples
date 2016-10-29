@@ -1,1 +1,1 @@
-web: node app.js
+web: APP_SECRET=app_secret VALIDATION_TOKEN=validate_token PAGE_ACCESS_TOKEN=page_token SERVER_URL=https://cryptic-ridge-83272.herokuapp.com node app.js
