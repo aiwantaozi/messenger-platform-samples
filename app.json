@@ -1,0 +1,8 @@
+{
+  "name": "Start on Heroku: Node.js",
+  "description": "char server",
+  "repository": "https://github.com/aiwantaozi/messenger-platform-samples",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "static"],
+  "image": "heroku/nodejs"
+}
