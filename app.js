@@ -12,11 +12,14 @@
 
 const 
   bodyParser = require('body-parser'),
+  FB = require('./service/facebook'),
   Config = require('./config/config'),
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),  
-  request = require('request');
+  request = require('request'),
+  Bot = require('./bot');
+
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -81,6 +84,8 @@ app.post('/webhook', function (req, res) {
 
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
+
+
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
         } else if (messagingEvent.message) {
@@ -301,7 +306,10 @@ function receivedMessage(event) {
         break;
 
       default:
-        sendTextMessage(senderID, messageText);
+        Bot.read(senderID, messageText, function (sender, reply) {
+          FB.newMessage(sender, reply)
+        })
+        // sendTextMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
